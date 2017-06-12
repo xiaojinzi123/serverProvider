@@ -24,6 +24,11 @@ public class ServerConfigAct extends AppCompatActivity {
 
     public static final String KEY_RESULT = "data";
 
+    /**
+     * 服务器配置的key
+     */
+    public static final String KEY_SERVER_DATA = "serverData";
+
 
     private ListView lv = null;
 
@@ -36,7 +41,7 @@ public class ServerConfigAct extends AppCompatActivity {
         lv = (ListView) findViewById(R.id.lv);
 
         try {
-            String json = SPUtil.get(this, "data", "[]");
+            String json = SPUtil.get(this, KEY_SERVER_DATA, "[]");
             JSONArray ja = new JSONArray(json);
             for (int i = 0; i < ja.length(); i++) {
                 JSONObject jb = ja.getJSONObject(i);
@@ -162,7 +167,8 @@ public class ServerConfigAct extends AppCompatActivity {
                 ja.put(i, jsonObject);
             }
             String json = ja.toString();
-            SPUtil.put(this, "data", json);
+            SPUtil.put(this, KEY_SERVER_DATA, json);
+
         } catch (Exception e) {
         }
 
